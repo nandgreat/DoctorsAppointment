@@ -5,9 +5,8 @@ import android.content.Context;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
 import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Utils {
 
@@ -24,12 +23,6 @@ public class Utils {
 
         return phone;
 
-    }
-
-    public static String moneyFormat(String amount){
-
-        DecimalFormat formatter = new DecimalFormat("###,###,###.00");
-        return formatter.format(Double.parseDouble(amount));
     }
 
 
