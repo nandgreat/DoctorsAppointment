@@ -9,6 +9,13 @@ public class AvailableTimes {
     private int timeImage;
     private List<String> myAvailableTimes;
 
+    public AvailableTimes(String timeTitle, String timeInterval, int timeImage, List<String> myAvailableTimes) {
+        this.timeTitle = timeTitle;
+        this.timeInterval = timeInterval;
+        this.timeImage = timeImage;
+        this.myAvailableTimes = myAvailableTimes;
+    }
+
     public String getTimeTitle() {
         return timeTitle;
     }

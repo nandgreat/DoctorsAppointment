@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -8,7 +8,26 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:fontFamily">@font/proxima_nova_regular</item>
+    </style>
 
+    <style name="AppTheme.GenderChip" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">10sp</item>
+
+    </style>
+
+    <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/rounded_corner_btn</item>
+    </style>
+
+    <style name="CustomChipChoiceStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="checkedIconVisible">false</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="chipBackgroundColor">#aaaaaa</item>
+        <item name="textStartPadding">10dp</item>
+        <item name="textEndPadding">10dp</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textAppearance">@style/AppTheme.GenderChip</item>
     </style>
 
 </resources>

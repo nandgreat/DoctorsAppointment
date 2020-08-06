@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.nandom.doctorsappointment.data.AppDatabase;
 import com.nandom.doctorsappointment.data.AppExecutors;
 import com.nandom.doctorsappointment.data.User;
@@ -15,11 +18,25 @@ import com.nandom.doctorsappointment.util.Utils;
 
 public class SignupActivity extends AppCompatActivity {
 
-    EditText etFirstName;
-    EditText etLastName;
-    EditText etEmail;
-    EditText etPassword;
+    TextInputEditText etFirstName;
+    TextInputEditText etLastName;
+    TextInputEditText etEmail;
+    TextInputEditText etPassword;
+    TextInputEditText etConfirmPassword;
+
+    TextInputLayout etFirstNameLayout;
+    TextInputLayout etLastNameLayout;
+    TextInputLayout etEmailLayout;
+    TextInputLayout etPasswordLayout;
+    TextInputLayout etConfirmPasswordLayout;
+
+
     TextView tvLogin;
+
+    TextView tvLastNameError;
+    TextView tvEmailError;
+    TextView tvPasswordError;
+    TextView tvFirstNameError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +54,50 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+
     public void onSignupButtonClicked(View view) {
+        if (validateInput()) {
 
-        AppDatabase appDatabase = AppDatabase.getInstance(getApplicationContext());
+            AppDatabase appDatabase = AppDatabase.getInstance(getApplicationContext());
 
-        User user = new User(
-                etFirstName.getText().toString(),
-                etLastName.getText().toString(),
-                etEmail.getText().toString(),
-                etPassword.getText().toString()
-        );
+            User user = new User(
+                    etFirstName.getText().toString(),
+                    etLastName.getText().toString(),
+                    etEmail.getText().toString(),
+                    etPassword.getText().toString()
+            );
 
-        AppExecutors.getInstance().diskIO().execute(() -> {
-            appDatabase.userDao().signupUser(user);
-            this.runOnUiThread(() -> Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show());
-            finish();
-        });
+            AppExecutors.getInstance().diskIO().execute(() -> {
+                appDatabase.userDao().signupUser(user);
+                this.runOnUiThread(() -> Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show());
+                finish();
+            });
+        }
+    }
+
+    private boolean validateInput() {
+        String emailError = Utils.validateEmail(etEmail.getText().toString().trim());
+        String password = etPassword.getText().toString();
+        String confirmPassword = etConfirmPassword.getText().toString();
+
+        // Check if email is valid or fields are empty
+        if (!emailError.contentEquals("valid_email") || etPassword.getText().toString().isEmpty()
+                || etFirstName.getText().toString().isEmpty() || etLastName.getText().toString().isEmpty()
+                || !password.contentEquals(confirmPassword)) {
+
+            etEmailLayout.setError(!emailError.contentEquals("valid_email") ? emailError : null);
+            etLastNameLayout.setError(etLastName.getText().toString().isEmpty() ? "Last name is required" : null);
+            etFirstNameLayout.setError(etFirstName.getText().toString().isEmpty() ? "First name field is required" : null);
+            etPasswordLayout.setError(password.isEmpty() ? "Password field is required" : null);
+            etConfirmPasswordLayout.setError(confirmPassword.isEmpty() ? "Confirm password field is required" : null);
+
+            // Check if password and confirm password matches
+            if (!password.isEmpty() && !confirmPassword.isEmpty() && !password.contentEquals(confirmPassword)) {
+                etPasswordLayout.setError(!password.contentEquals(confirmPassword) ? "Password fields do not match is required" : null);
+                etConfirmPasswordLayout.setError(!password.contentEquals(confirmPassword) ? "Password fields do not match" : null);
+            }
+            return false;
+        } else return true;
     }
 
     private void initViews() {
@@ -60,6 +105,15 @@ public class SignupActivity extends AppCompatActivity {
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        etConfirmPassword = findViewById(R.id.etConfirmPassword);
+
+        etFirstNameLayout = findViewById(R.id.etFirstNameLayout);
+        etLastNameLayout = findViewById(R.id.etLastNameLayout);
+        etEmailLayout = findViewById(R.id.etEmailLayout);
+        etPasswordLayout = findViewById(R.id.etPasswordLayout);
+        etConfirmPasswordLayout = findViewById(R.id.etConfirmPasswordLayout);
         tvLogin = findViewById(R.id.tvLogin);
+
+
     }
 }

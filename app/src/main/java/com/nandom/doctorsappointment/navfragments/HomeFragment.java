@@ -2,6 +2,8 @@ package com.nandom.doctorsappointment.navfragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +14,9 @@ import android.view.ViewGroup;
 
 import com.nandom.doctorsappointment.R;
 import com.nandom.doctorsappointment.adapters.RecyclerViewAdapter;
+import com.nandom.doctorsappointment.data.User;
 import com.nandom.doctorsappointment.models.ServiceModel;
+import com.nandom.doctorsappointment.util.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +36,16 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
         serviceModelList = new ArrayList<>();
+
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
+
+        User meUser = sharedPrefManager.getLoggedInUser();
+
+        toolbar.setTitle("Hi, ".concat(meUser.getFirstName()));
 
         populateServiceModel();
 

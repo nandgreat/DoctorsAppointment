@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.nandom.doctorsappointment.data.AppDatabase;
 import com.nandom.doctorsappointment.data.AppExecutors;
 import com.nandom.doctorsappointment.data.User;
@@ -19,10 +21,14 @@ import com.nandom.doctorsappointment.util.Utils;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText etEmail;
-    EditText etPassword;
+    TextInputEditText etEmail;
+    TextInputEditText etPassword;
     TextView tvEmailError;
     TextView tvPasswordError;
+
+    TextInputLayout etEmailLayout;
+    TextInputLayout etPasswordLayout;
+
     private AppDatabase appDatabase;
 
     SharedPrefManager sharedPrefManager;
@@ -43,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         if (sharedPrefManager.isLoggedIn()) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
-        }else
+        } else
             Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
 
         appDatabase = AppDatabase.getInstance(getApplicationContext());
@@ -71,9 +77,9 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateInput() {
         String emailError = Utils.validateEmail(etEmail.getText().toString().trim());
         if (!emailError.contentEquals("valid_email") || etPassword.getText().toString().isEmpty()) {
-            tvEmailError.setVisibility(View.VISIBLE);
-            tvEmailError.setText(emailError);
-            tvPasswordError.setVisibility(View.VISIBLE);
+            etEmailLayout.setError(!emailError.contentEquals("valid_email") ? emailError : null);
+            etPasswordLayout.setError(etPassword.getText().toString().isEmpty() ? "Password field is required" : null);
+
             return false;
         } else return true;
     }
@@ -82,8 +88,9 @@ public class LoginActivity extends AppCompatActivity {
     public void initViews() {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        tvEmailError = findViewById(R.id.tvEmailError);
-        tvPasswordError = findViewById(R.id.tvPasswordError);
+
+        etEmailLayout = findViewById(R.id.etEmailLayout);
+        etPasswordLayout = findViewById(R.id.etPasswordLayout);
 
     }
 }

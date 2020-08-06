@@ -22,9 +22,10 @@
 
         <ImageView
             android:id="@+id/ivLeftArrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
             android:src="@drawable/ic_icon_feather_chevron_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,9 +46,10 @@
 
         <ImageView
             android:id="@+id/ivRightArrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="10dp"
+            android:padding="7dp"
             android:src="@drawable/ic_icon_feather_chevron_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,27 +67,93 @@
         app:weekBackgroundColor="#f8f8f8"
         app:weekTextColor="@android:color/darker_gray" />
 
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="Available Times"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ivRightArrow"
-        app:layout_constraintStart_toEndOf="@id/ivLeftArrow"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Available Times"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivRightArrow"
+                app:layout_constraintStart_toEndOf="@id/ivLeftArrow"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/exposures_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:nestedScrollingEnabled="false" />
+            <com.github.islamkhsh.CardSliderViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardSlider_indicator="@id/indicator"
+                app:cardSlider_otherPagesWidth="24dp"
+                app:cardSlider_pageMargin="0dp"
+                app:cardSlider_smallAlphaFactor="0.5"
+                app:cardSlider_smallScaleFactor="0.9" />
 
+            <com.github.islamkhsh.CardSliderIndicator
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                app:indicatorsToShow="5" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Available doctors(5)"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"
+                     />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.github.islamkhsh.CardSliderViewPager
+                android:id="@+id/doctorViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardSlider_indicator="@id/doctorIndicator"
+                app:cardSlider_otherPagesWidth="24dp"
+                app:cardSlider_pageMargin="0dp"
+                app:cardSlider_smallAlphaFactor="0.5"
+                app:cardSlider_smallScaleFactor="0.9" />
+
+            <com.github.islamkhsh.CardSliderIndicator
+                android:id="@+id/doctorIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                app:indicatorsToShow="5" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

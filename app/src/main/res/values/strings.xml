@@ -27,4 +27,12 @@
     <string name="email_is_required">Email field is required</string>
     <string name="password_is_required">Password is required</string>
     <string name="logout">Logout</string>
+    <string name="morning">Morning</string>
+    <string name="english">English</string>
+    <string name="general_practitioner">General Practitioner</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="amount">₦22,000</string>
+    <string name="first_name_error">First Name field is required</string>
+    <string name="last_name_error">Last name field is required</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
