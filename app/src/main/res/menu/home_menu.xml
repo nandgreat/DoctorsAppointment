@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_icon_ionic_ios_notifications"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/nav_appointments"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_icon_material_settings"
+        android:title="@string/appointments"/>
+</menu>

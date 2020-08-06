@@ -43,18 +43,4 @@ public class Utils {
         }
     }
 
-    public static String timeofDay(){
-        Calendar cal = Calendar.getInstance();
-        Date date = new Date();
-        cal.setTime(date);
-        int hour = cal.get(Calendar.HOUR_OF_DAY);
-        int minutes = cal.get(Calendar.MINUTE);
-        if (hour < 12 ) {
-            return "Morning";
-        }else if(hour >= 12 && hour < 17){
-            return "Afternoon";
-        }else{
-            return "Evening";
-        }
-    }
 }

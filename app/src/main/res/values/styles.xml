@@ -12,7 +12,6 @@
 
     <style name="AppTheme.GenderChip" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textSize">10sp</item>
-
     </style>
 
     <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button.Colored">
