@@ -2,6 +2,7 @@ package com.nandom.doctorsappointment.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import java.text.DecimalFormat;
@@ -29,6 +30,17 @@ public class Utils {
 
         DecimalFormat formatter = new DecimalFormat("###,###,###.00");
         return formatter.format(Double.parseDouble(amount));
+    }
+
+
+    public static String validateEmail(String email){
+        if(!email.isEmpty()) {
+            if (Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                return "valid_email";
+            else return "Invalid Email address";
+        }else{
+            return "Email field is required";
+        }
     }
 
     public static String timeofDay(){

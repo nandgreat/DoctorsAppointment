@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nandom.doctorsappointment.R;
+import com.nandom.doctorsappointment.util.SharedPrefManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +61,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
+        view.findViewById(R.id.tvLogout).setOnClickListener(view1 -> sharedPrefManager.logout());
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
 }

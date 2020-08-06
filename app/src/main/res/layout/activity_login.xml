@@ -33,17 +33,39 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="238dp" />
 
+        <TextView
+            android:id="@+id/tvEmailError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="3dp"
+            android:visibility="gone"
+            android:text="@string/email_is_required"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp" />
+
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:drawableEnd="@drawable/ic_show_password"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:drawableEnd="@drawable/ic_show_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="238dp" />
+
+        <TextView
+            android:id="@+id/tvPasswordError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:visibility="gone"
+            android:layout_marginStart="3dp"
+            android:text="@string/password_is_required"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,8 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:background="@drawable/login_btn_bg"
-            android:text="@string/login"
             android:onClick="login"
+            android:text="@string/login"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
@@ -77,13 +99,14 @@
                 android:gravity="center"
                 android:text="Don't have an account yet?"
                 android:textColor="#333333" />
+
             <TextView
                 android:id="@+id/tvSignup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:gravity="center"
                 android:layout_marginStart="10dp"
+                android:gravity="center"
                 android:text="Signup"
                 android:textColor="@color/colorAccent" />
         </LinearLayout>

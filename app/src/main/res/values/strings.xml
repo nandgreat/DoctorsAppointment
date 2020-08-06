@@ -23,4 +23,8 @@
     <string name="no_upcoming_appointment">No upcoming appointment, order or diagnostic test</string>
     <string name="services">Services</string>
     <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="email_is_required">Email field is required</string>
+    <string name="password_is_required">Password is required</string>
+    <string name="logout">Logout</string>
 </resources>
